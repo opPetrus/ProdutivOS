@@ -17,12 +17,12 @@ const ECONOMY = {
 };
 
 const COPY = {
-  idle: ["Você parou.", "O prazo continua andando.", "Estou só conferindo.", "Não confunda silêncio com ausência."],
-  useful: ["Certo. Continue.", "Isso conta como trabalho.", "Sem aplausos. Só continue."],
-  useless: ["Eu não abriria isso.", "Você sabe o que está fazendo.", "Interessante escolha perto do prazo."],
-  theft: ["Vou guardar isso por um instante.", "Este atalho parecia perigoso.", "Inventário preventivo."],
-  caught: ["O cursor vem comigo.", "Você perdeu os privilégios do mouse.", "Vou reposicionar sua atenção."],
-  alarm: ["VOLTE PARA A CADEIRA.", "PRESENÇA NÃO DETECTADA.", "O SEMESTRE NÃO PAUSA."]
+  idle: ["e ai ze vai fica morcegando?", "ce tem que acabar isso hj ainda fi", "ta ai frisquila ?", "mo molezinha tio"],
+  useful: ["trabalha mesmo", "estou orgulhoso de vc meu filho", "vc me enche de orgulho !!!"],
+  useless: ["e ai ze ta abrindo os bagui ai tio", "faz isso nao ze", "ce tem coisa pra fazer fiii"],
+  theft: ["perdeu !!!", "kkkk robei", "sou ladrao rapas"],
+  caught: ["num viaja ni mim nao ze", "ta brisando tio", "vem ca ze"],
+  alarm: ["VOLTA PARA A CADEIRA.", "PRESENÇA NÃO DETECTADA", "O SEMESTRE NÃO PAUSA"]
 };
 
 const APPS = [
@@ -52,11 +52,8 @@ const DEFAULT_TASKS = [
 
 const SHOP_ITEMS = [
   {id:"grad", name:"Chapéu de formatura", price:90, icon:"🎓"},
-  {id:"crown", name:"Coroa de monitor", price:180, icon:"👑"},
   {id:"cap", name:"Boné suspeito", price:130, icon:"🧢"},
-  {id:"glasses", name:"Óculos de autoridade", price:160, icon:"😎"},
   {id:"pinkTie", name:"Gravata magenta", price:70, icon:"👔"},
-  {id:"ascii", name:"Star Wars ASCII", price:500, icon:"★"}
 ];
 
 const today = () => new Date().toISOString().slice(0,10);
@@ -358,7 +355,7 @@ function wireApp(id,win){
   if(id==="runcodes")$("#runCode",win).onclick=()=>{$("#runResult",win).textContent="Aceito · 3/3 casos · 0.083s";awardFocusBonus(12,"Submissão aceita em Run.codes.")};
   if(id==="folki")$$('[data-folki]',win).forEach(b=>b.onclick=()=>{$("#folkiResult",win).textContent={calendar:"Janela encontrada: quinta, 18:00–18:12.",group:"Você: introdução e conclusão. Pedro: visualizado.",summary:"Restam 64 páginas. O resumo é: comece.",room:"Sala B-16. Não confundir com o bloco B."}[b.dataset.folki]});
   if(id==="instagram")wireInstagram(win);
-  if(id==="clash")$("#clashPlay",win).onclick=()=>{buddySay("Carta confiscada.");$("#clashPlay",win).textContent="CONTROLES BLOQUEADOS PELO URUBU";buddyBlockWindow(id)};
+  if(id==="clash")$("#clashPlay",win).onclick=()=>{buddySay("confisquei kkkkkkkkkkkkkk");$("#clashPlay",win).textContent="CONTROLES BLOQUEADOS PELO URUBU";buddyBlockWindow(id)};
   if(id==="procrastibet")wireBet(win);
   if(id==="shop")$$('[data-buy]',win).forEach(b=>b.onclick=()=>buyItem(b.dataset.buy));
   if(id==="customize")wireCustomizer(win);
@@ -410,7 +407,7 @@ function wireBet(win){
     const amount=Math.max(10,Math.floor(Number($("#betAmount",win).value)||0));
     if(!odd){$("#betResult",win).textContent="Selecione uma odd.";return}
     if(!canAfford(amount)){$("#betResult",win).textContent="Saldo insuficiente.";return}
-    if(Math.random()<ECONOMY.gambleLossChance){spendPoints(amount,"Bilhete encerrado sem retorno.");$("#betResult",win).textContent="PERDEU · A casa agradece.";buddySay("Estatística básica.")}
+    if(Math.random()<ECONOMY.gambleLossChance){spendPoints(amount,"Bilhete encerrado sem retorno.");$("#betResult",win).textContent="PERDEU · A casa agradece.";buddySay("ce nao sabe estatistica nao ze")}
     else{addPoints(Math.floor(amount*odd),"Bilhete premiado.");$("#betResult",win).textContent="GANHOU · evento estatisticamente suspeito."}
   };
 }
@@ -425,14 +422,14 @@ function buyItem(id){
 
 function wireInstagram(win){
   const started=Date.now();
-  const time=setInterval(()=>{if(!runtime.windows.has("instagram")){clearInterval(time);return}const s=Math.floor((Date.now()-started)/1000);$("#igTime",win).textContent=`tempo desperdiçado: ${s}s`;if(s>0&&s%15===0){addPoints(-8,"Rolagem prolongada no Instagram.");buddySay("O feed não termina. Seu prazo termina.")}},1000);
+  const time=setInterval(()=>{if(!runtime.windows.has("instagram")){clearInterval(time);return}const s=Math.floor((Date.now()-started)/1000);$("#igTime",win).textContent=`tempo desperdiçado: ${s}s`;if(s>0&&s%15===0){addPoints(-8,"Rolagem prolongada no Instagram.");buddySay("cabou")}},1000);
   $$('[data-like]',win).forEach(b=>b.onclick=()=>{const post=b.closest(".ig-post");post.classList.toggle("liked");b.textContent=post.classList.contains("liked")?"♥":"♡";if(post.classList.contains("liked"))addPoints(-2,"Curtida impulsiva.")});
   $$('[data-save]',win).forEach(b=>b.onclick=()=>{b.classList.toggle("active");toast("Instagram",b.classList.contains("active")?"Salvo para nunca mais abrir.":"Removido dos salvos.")});
   $$('[data-follow]',win).forEach(b=>b.onclick=()=>{b.textContent=b.textContent==="Seguir"?"Seguindo":"Seguir";if(b.textContent==="Seguindo")addPoints(-3,"Nova distração seguida.")});
   $$('[data-story]',win).forEach(b=>b.onclick=()=>{b.classList.add("seen");toast("Stories",`Story ${Number(b.dataset.story)+1}/47. O Urubu está contando.`);if(Number(b.dataset.story)===4)buddyBlockWindow("instagram")});
   $$('[data-comment-form]',win).forEach(f=>f.onsubmit=e=>{e.preventDefault();const input=$("input",f),v=input.value.trim();if(!v)return;$("#igComments"+f.dataset.commentForm,win).insertAdjacentHTML("beforeend",`<p><b>produtivo_da_silva</b> ${esc(v)}</p>`);input.value="";addPoints(-4,"Comentário publicado durante o prazo.")});
   $$('[data-ig-tab]',win).forEach(b=>b.onclick=()=>{$$('[data-ig-tab]',win).forEach(x=>x.classList.toggle("active",x.dataset.igTab===b.dataset.igTab));$("#igPosts",win).className=`ig-${b.dataset.igTab}`;if(b.dataset.igTab==="reels")setTimeout(()=>buddyBlockWindow("instagram"),500)});
-  $("#igMore",win).onclick=()=>{$("#igPosts",win).insertAdjacentHTML("beforeend",igPost(["@algoritmo_sem_fim","VOCÊ PEDIU MAIS. ELE ENTREGOU MAIS.","2","não existe última publicação"],Date.now()));addPoints(-5,"Você pediu mais feed.");buddySay("Eu vi esse clique.")};
+  $("#igMore",win).onclick=()=>{$("#igPosts",win).insertAdjacentHTML("beforeend",igPost(["@algoritmo_sem_fim","VOCÊ PEDIU MAIS. ELE ENTREGOU MAIS.","2","não existe última publicação"],Date.now()));addPoints(-5,"Você pediu mais feed.");buddySay("eu vi isso ai hem")};
 }
 
 function wireDebug(win){
@@ -476,7 +473,7 @@ function moveBuddy(x,y){
 function catchCursor(force=false){
   if((runtime.buddyBusy&&!force)||runtime.virtualCursor.active)return;runtime.buddyBusy=true;
   const ghost=$("#cursorGhost"),desk=$("#desktop"),start={...runtime.pointer};
-  setBuddyPose("reach");buddySay(pick(COPY.caught)+" Esc devolve.",5200);moveBuddy(start.x-190,start.y-105);
+  setBuddyPose("reach");buddySay(pick(COPY.caught)+" dps devolve",5200);moveBuddy(start.x-190,start.y-105);
   setTimeout(()=>{setBuddyPose("grab");desk.classList.add("cursor-caught");ghost.style.transition="none";ghost.style.left=`${start.x}px`;ghost.style.top=`${start.y}px`},420);
   setTimeout(()=>{
     const x=45+Math.random()*(innerWidth-130),y=55+Math.random()*(innerHeight-150);
@@ -487,7 +484,7 @@ function catchCursor(force=false){
 }
 
 function releaseCursor(){
-  if(!runtime.virtualCursor.active)return;runtime.virtualCursor.active=false;runtime.virtualCursor.lastX=null;runtime.virtualCursor.lastY=null;$("#desktop").classList.remove("cursor-caught");buddySay("Mouse devolvido. Por enquanto.");
+  if(!runtime.virtualCursor.active)return;runtime.virtualCursor.active=false;runtime.virtualCursor.lastX=null;runtime.virtualCursor.lastY=null;$("#desktop").classList.remove("cursor-caught");buddySay("devolvi por agora .");
 }
 
 function stealIcon(appId,force=false){
@@ -497,7 +494,7 @@ function stealIcon(appId,force=false){
   runtime.buddyBusy=true;runtime.theftCooldown=Date.now()+10000;setBuddyPose("reach");buddySay(pick(COPY.theft));const r=icon.getBoundingClientRect();moveBuddy(r.left-80,r.top-45);
   setTimeout(()=>setBuddyPose("steal"),380);
   setTimeout(()=>{icon.classList.add("stolen");state.stolenApps.push(app.id);persist();moveBuddy(innerWidth-190,innerHeight-280)},750);
-  setTimeout(()=>{const area=$("#desktopIcons").getBoundingClientRect();state.iconPositions[app.id]={x:Math.round(100+Math.random()*Math.max(100,area.width-430)),y:Math.round(20+Math.random()*Math.max(80,area.height-120))};state.stolenApps=state.stolenApps.filter(x=>x!==app.id);persist();renderDesktop();setBuddyPose("idle");runtime.buddyBusy=false;buddySay("Devolvi. Encontre.")},5200);
+  setTimeout(()=>{const area=$("#desktopIcons").getBoundingClientRect();state.iconPositions[app.id]={x:Math.round(100+Math.random()*Math.max(100,area.width-430)),y:Math.round(20+Math.random()*Math.max(80,area.height-120))};state.stolenApps=state.stolenApps.filter(x=>x!==app.id);persist();renderDesktop();setBuddyPose("idle");runtime.buddyBusy=false;buddySay("encontra ai ze kkkk")},5200);
 }
 
 function buddyScream(text){
@@ -531,7 +528,7 @@ async function inspectPresence(win,video){
   if("FaceDetector" in window){try{const faces=await new FaceDetector({fastMode:true,maxDetectedFaces:1}).detect(video);if(!faces.length){bad=true;reason="ROSTO FORA DO ENQUADRAMENTO";confidence=0}else{const face=faces[0],b=face.boundingBox,w=video.videoWidth,h=video.videoHeight,cx=(b.x+b.width/2)/w,cy=(b.y+b.height/2)/h,area=(b.width*b.height)/(w*h),eyes=(face.landmarks||[]).filter(l=>/eye/i.test(l.type)),nose=(face.landmarks||[]).find(l=>/nose/i.test(l.type));const eyeY=eyes.length?eyes.reduce((n,l)=>n+l.locations[0].y,0)/eyes.length:null,tilt=eyeY&&nose?(nose.locations[0].y-eyeY)/b.height:.22;if(cy>.60||tilt>.34){bad=true;reason="OLHAR MUITO BAIXO";confidence=25}else if(cx<.24||cx>.76){bad=true;reason="ROSTO MUITO LATERAL";confidence=38}else if(area<.035){bad=true;reason="VOCÊ ESTÁ LONGE DEMAIS";confidence=25}}}catch{({bad,reason,confidence}=presenceFallback(win,video))}}
   else({bad,reason,confidence}=presenceFallback(win,video));
   runtime.presence.badFrames=bad?runtime.presence.badFrames+1:0;const verdict=$("#presenceVerdict",win),meter=$("#presenceMeter",win);if(verdict){verdict.textContent=reason;verdict.classList.toggle("bad",bad);meter.style.width=`${confidence}%`}
-  if(runtime.presence.badFrames>=2){runtime.presence.alarm=true;if(Date.now()-runtime.presence.lastAlarm>4500){runtime.presence.lastAlarm=Date.now();presenceAlarm(reason)}}else if(!bad&&runtime.presence.alarm){runtime.presence.alarm=false;buddySay("Presença restaurada. Não teste minha paciência.");if(!runtime.buddyBusy)setBuddyPose("idle")}
+  if(runtime.presence.badFrames>=2){runtime.presence.alarm=true;if(Date.now()-runtime.presence.lastAlarm>4500){runtime.presence.lastAlarm=Date.now();presenceAlarm(reason)}}else if(!bad&&runtime.presence.alarm){runtime.presence.alarm=false;buddySay("viaja ni mim nao ze.");if(!runtime.buddyBusy)setBuddyPose("idle")}
 }
 
 function presenceFallback(win,video){
