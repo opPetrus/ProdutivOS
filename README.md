@@ -36,10 +36,11 @@ Durante o evento, os participantes precisam criar, desenvolver e apresentar um p
 
 ### 👥 Equipe
 
-Projeto desenvolvido por uma equipe de **3 integrantes:**.
--Petrus de Oliveira Pinheiro
--Thales Amaral Gontijo
--Murilo Yuki Kasama Nakata
+Projeto desenvolvido por uma equipe de **3 integrantes:**
+
+* Petrus de Oliveira Pinheiro
+* Thales Amaral Gontijo
+* Murilo Yuki Kasama Nakata
 
 ### 🎯 Desafio
 
@@ -62,7 +63,7 @@ O resultado foi o produtivOS.
 > Você pode explorar o sistema diretamente pelo link abaixo.
 
 ```text
-(https://oppetrus.github.io/ProdutivOS/)
+https://oppetrus.github.io/ProdutivOS/
 ```
 
 # 🚀 Executando o projeto
