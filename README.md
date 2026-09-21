@@ -8,7 +8,7 @@ Em vez de simplesmente bloquear aplicativos, o produtivOS transforma produtivida
 
 🎓 Desenvolvido durante o **Hackfools** em apenas **10 horas**.
 
-🏆 **Vencedor do Hackfools**
+🏆 **Vencedor do Hackfools 2026**
 
 ---
 
@@ -29,13 +29,17 @@ As principais tecnologias utilizadas incluem:
 
 ---
 
-# 🏆 Hackfools
+# 🏆 Hackfools 2026
 
-O produtivOS foi desenvolvido durante o **Hackfools**, com uma restrição de aproximadamente **10 horas para concepção e desenvolvimento do protótipo**.
+O Hackfools é uma competição de inovação e programação organizada pelo grupo extracurricular Codelab em que equipes desenvolvem soluções criativas para desafios reais em um tempo limitado.
+Durante o evento, os participantes precisam criar, desenvolver e apresentar um protótipo funcional para uma banca de jurados.
 
 ### 👥 Equipe
 
-Projeto desenvolvido por uma equipe de **3 integrantes**.
+Projeto desenvolvido por uma equipe de **3 integrantes:**.
+-Petrus de Oliveira Pinheiro
+-Thales Amaral Gontijo
+-Murilo Yuki Kasama Nakata
 
 ### 🎯 Desafio
 
@@ -49,7 +53,7 @@ O resultado foi o produtivOS.
 
 ### 🏆 Resultado
 
-# 🥇 Vencedor do Hackfools
+🥇 Vencedor do Hackfools na categoria Melhor Projeto
 
 ---
 
@@ -58,7 +62,7 @@ O resultado foi o produtivOS.
 > Você pode explorar o sistema diretamente pelo link abaixo.
 
 ```text
-[ https://oppetrus.github.io/ProdutivOS/ ]
+(https://oppetrus.github.io/ProdutivOS/)
 ```
 
 # 🚀 Executando o projeto
@@ -88,7 +92,6 @@ npm run dev
 ```
 
 > Os comandos acima podem variar conforme a estrutura final do projeto.
-
 
 ---
 
